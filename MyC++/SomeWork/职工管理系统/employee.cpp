@@ -16,7 +16,6 @@ void Employee::showInfo() {
 	cout << "职工岗位：" << this->getDeptName() << endl;
 	cout << "完成经理分配的任务" << endl;
 }
-}
 
 
 string Employee::getDeptName() {
