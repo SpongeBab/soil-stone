@@ -20,3 +20,5 @@ void boss::showInfo() {
 string boss::getDeptName() {
 	return string("æ≠¿Ì");
 }
+
+

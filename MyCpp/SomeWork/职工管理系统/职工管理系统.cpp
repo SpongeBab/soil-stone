@@ -5,6 +5,9 @@ using namespace std;
 
 #include"worker.h"
 #include"employee.h"
+#include"workermanager.h"
+#include"boss.h"
+
 
 
 int main() {    
@@ -15,13 +18,13 @@ int main() {
 
 
 
-
-    Staff_management_system sms;
+    //Staff_management_system sms;
+    workermanager wm;
     int choice = 0;
     
     while (true)
     {   
-        sms.Show_menu();
+        wm.Show_menu();
         cout << "请输入选择：" << endl;
         cin >> choice;
         /* code */
@@ -29,12 +32,11 @@ int main() {
         switch (choice)
         {
         case 0:
-            sms.exitSystem();
+            wm.ExitSystem();
             break;
         case 1 /* constant-expression */:
-            /*  */
-            
-            
+            /* 增加职工 */
+            wm.Add_Emp();
             break;
         case 2:
             break;

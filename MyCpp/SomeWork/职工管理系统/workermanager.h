@@ -2,6 +2,12 @@
 #include<iostream>
 using namespace std;
 #include"worker.h"
+#include"manager.h"
+#include"boss.h"
+#include"employee.h"
+
+#include<fstream>
+#define FILENAME "empFile.txt"
 
 class workermanager
 {
@@ -24,7 +30,15 @@ public:
 	//职工数组指针    一个数组，里面全是指针？
 	worker** m_EmpArray;
 
+	//添加成员
 	void Add_Emp();
+
+	//保存文件
+	void save();
+
+	//判断文件是否为空
+	bool m_Fileempty;
+
 
 private:
 

@@ -15,17 +15,10 @@ public:
 	//获取岗位信息
 	virtual string getDeptName();
 
-	boss();
-	~boss();
+	//~boss();
 
 private:
 
 };
 
-boss::boss()
-{
-}
 
-boss::~boss()
-{
-}
