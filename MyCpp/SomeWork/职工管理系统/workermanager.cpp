@@ -31,7 +31,17 @@ void workermanager::ExitSystem() {
 }
 
 void workermanager::Add_Emp() {
-
+    cout << "输入添加职工的数量：" << endl;
+    int addNum;
+    cin >> addNum;
+    if (addNum > 0) {
+        //添加模块
+        //因为添加的人数不同，先计算添加的新空间的大小
+        int newsize = this->m_EmpNum + addNum; //原来的大小+增加的大小
+    }
+    else {
+        cout << "输入人数非法，请重新输入" << endl;
+    }
 }
 
 
