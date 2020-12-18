@@ -16,18 +16,7 @@ public:
 	//获取岗位信息
 	virtual string getDeptName();
 
-
-	Manager();
-	~Manager();
-
 private:
 
 };
 
-Manager::Manager()
-{
-}
-
-Manager::~Manager()
-{
-}
