@@ -31,16 +31,18 @@ int main() {
       
         switch (choice)
         {
-        case 0:
+        case 0:  //退出系统
             wm.ExitSystem();
             break;
         case 1 /* constant-expression */:
             /* 增加职工 */
             wm.Add_Emp();
             break;
-        case 2:
+        case 2: // 显示职工
+            wm.Show_Emp();
             break;
-        case 3:
+        case 3: //删除职工
+            wm.Del_Emp();
             break;
         case 4:
             break;

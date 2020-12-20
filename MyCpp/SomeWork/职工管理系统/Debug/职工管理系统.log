@@ -1,9 +1,4 @@
-﻿  Staff_management_system.cpp
+﻿  workermanager.cpp
   职工管理系统.cpp
-D:\Code\CppProjects\SomeWork\职工管理系统\职工管理系统.cpp(8,32): error C2248: “Staff_management_system::Staff_management_system”: 无法访问 private 成员(在“Staff_management_system”类中声明)
-D:\Code\CppProjects\SomeWork\职工管理系统\Staff_management_system.h(11): message : 参见“Staff_management_system::Staff_management_system”的声明
-D:\Code\CppProjects\SomeWork\职工管理系统\Staff_management_system.h(8): message : 参见“Staff_management_system”的声明
-D:\Code\CppProjects\SomeWork\职工管理系统\职工管理系统.cpp(9,19): error C2248: “Staff_management_system::Show_menu”: 无法访问 private 成员(在“Staff_management_system”类中声明)
-D:\Code\CppProjects\SomeWork\职工管理系统\Staff_management_system.h(13): message : 参见“Staff_management_system::Show_menu”的声明
-D:\Code\CppProjects\SomeWork\职工管理系统\Staff_management_system.h(8): message : 参见“Staff_management_system”的声明
   正在生成代码...
+  职工管理系统.vcxproj -> D:\MyGit\soil-stone\MyCpp\SomeWork\职工管理系统\Debug\职工管理系统.exe

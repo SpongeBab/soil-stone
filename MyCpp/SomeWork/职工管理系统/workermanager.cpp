@@ -4,11 +4,13 @@
 workermanager::workermanager()
 {   
     //文件不存在
+    bool m_Fileempty = false;
     ifstream ifs;
     ifs.open(FILENAME, ios::in);
+    
 
     if (!ifs.is_open()){
-        cout << "文件不存在。" << endl;
+        //cout << "文件不存在。" << endl;
         this->m_EmpNum = 0;
         this->m_EmpArray = NULL;
         this->m_Fileempty = true;
@@ -19,24 +21,153 @@ workermanager::workermanager()
     //文件存在，数据为空
     char ch;
     ifs >> ch;
-    if (ifs.is_open()) {
-        cout << "文件为空。" << endl;
+    if (ifs.eof()) {
+        //cout << "文件为空。" << endl;
         this->m_EmpNum = 0;
         this->m_EmpArray = NULL;
         this->m_Fileempty = true;
         ifs.close();
         return;
     }
+    //文件存在，并且记录数据
+    int num = this->get_EmpNum();
+    //cout << "职工人数为：" << num << endl;
+    this->m_EmpNum = num;
+
+    //开辟空间，
+    //程序关闭后，把分配的数组空间释放掉了，再次打开需要开辟空间，把文件中的数据读取到内存中！
+    //先统计文件中有几个员工，再给数组开辟对应空间大小的内存，然后再从文件中读取数据保存到数组中
+    this->m_EmpArray = new worker * [this->m_EmpNum];
+    //将文件中的数据存入数组
+    this->init_Emp();
+
+    /*for (int i = 0; i < this->m_EmpNum; i++)
+    {
+        cout << "职工编号：" << this->m_EmpArray[i]->m_Id << " "
+            << "姓名：" << this->m_EmpArray[i]->m_name << " "
+            << "所属部门：" << this->m_EmpArray[i]->m_DeptID << " ";
+
+    }*/
 
     //初始化属性
-    this->m_EmpNum = 0;
-    this->m_EmpArray = NULL;
+    /*this->m_EmpNum = 0;
+    this->m_EmpArray = NULL;*/
 
 }
+
+int workermanager::get_EmpNum() {
+    fstream ifs;
+    ifs.open(FILENAME, ios::in);
+
+    int id;
+    string name;
+    int dID;
+
+    int num = 0;
+    while (ifs >> id && ifs >> name && ifs >> dID) {
+        num++;
+    }
+    return num;
+}
+
+//初始化员工,为了将硬盘上的数据加载到内存中，
+void workermanager::init_Emp() {
+    fstream ifs;
+    ifs.open(FILENAME, ios::in);
+
+    int id;
+    string name;
+    int dID;
+
+    int index = 0;
+    while (ifs >> id && ifs >> name && ifs >> dID) {
+        worker* worker = NULL;
+        if (dID == 1) {
+            worker = new Employee(id, name, dID);
+        }
+        else if (dID == 2){
+            worker = new Manager(id, name, dID);
+        }
+        else if (dID == 3) {
+            worker = new boss(id, name, dID);
+        }
+
+        this->m_EmpArray[index] = worker; 
+        index++;
+    }
+    //关闭文件
+    ifs.close();
+}
+
+void workermanager::Show_Emp() {
+    if (this->m_Fileempty) {
+        cout << "文件不存在或记录为空！" << endl;
+    }
+    else {
+        for (int i = 0; i < m_EmpNum; i++) {
+            this->m_EmpArray[i]->showInfo();
+        }
+    }
+    system("pause");
+    system("cls");
+}
+
+void workermanager::Del_Emp() {
+    if (this->m_Fileempty) {
+        cout << "文件为空。" << endl;
+    }
+    else {
+        //按照职工编号删除
+        cout << "请输入删除的职工id：" << endl;
+
+        int id = 0;
+        cin >> id;
+        int index = this->IsExist(id);
+
+        if (index != -1) {
+            //数据前移，覆盖
+            for (int i = index; i < m_EmpNum-1; i++) {
+                this->m_EmpArray[i] = this->m_EmpArray[i + 1];
+            }
+            this->m_EmpNum--;
+
+            //数据同步更新到文件
+            this->save();
+
+            cout << "删除成功。" << endl;
+        }
+        else {
+            cout << "删除失败。" << endl;
+        }
+
+    }
+    
+    system("pause");
+    system("cls");
+}
+
+int workermanager::IsExist(int id) {
+    int index = -1;
+
+    for (int i = 0; i < m_EmpNum; i++) {
+        if (this->m_EmpArray[i]->m_Id =id) {
+            cout << "找到" << endl;
+            index = 1;
+            break;
+        }
+    }
+    return index;
+}
+
 
 workermanager::~workermanager()
 {
+    if (this->m_EmpArray != NULL) {
+        delete[] this->m_EmpArray;
+        this->m_EmpArray = NULL;
+    }
 }
+
 
 void workermanager::save() {
     fstream ofs;
@@ -49,7 +180,6 @@ void workermanager::save() {
     }
     ofs.close();
 }
-
 
 void workermanager::Show_menu() {
     cout << "1.添加成员" << endl;
@@ -124,7 +254,6 @@ void workermanager::Add_Emp() {
                 break;
             case 3:
                 worker = new boss(id, name, 3);
-                worker = new boss(id, name, 1);
                 break;
             default:
                 break;
@@ -140,9 +269,10 @@ void workermanager::Add_Emp() {
         this->m_EmpArray = newSpace;
         //更新新的职工人数
         this->m_EmpNum += newsize;
+        //更新文件标志
+        this->m_Fileempty = false;
         //创建文件，保存到本地！
         this->save();
-
         //提示添加成功
         cout << "成功添加" << endl;
     }
@@ -153,8 +283,3 @@ void workermanager::Add_Emp() {
     system("pause");
     system("cls");
 }
-
-
-
-
-

@@ -36,6 +36,20 @@ public:
 	//保存文件
 	void save();
 
+	//统计人数
+	int get_EmpNum();
+
+	//初始化成员
+	void init_Emp();
+
+	//显示成员
+	void Show_Emp();
+
+	void Del_Emp();
+
+	int IsExist(int id);
+
+
 	//判断文件是否为空
 	bool m_Fileempty;
 
