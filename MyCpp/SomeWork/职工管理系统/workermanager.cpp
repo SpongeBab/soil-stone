@@ -113,7 +113,11 @@ void workermanager::Add_Emp() {
             /*if（dSelect = NULL) {
             cout << "输入非法，重新输入。" << endl;
                 }*/
+<<<<<<< HEAD
             worker * worker = NULL;
+=======
+            worker* worker = NULL;
+>>>>>>> 29f8e05eb2eb9275eec002dc8a96a7659c2b0efa
             switch (dSelect)
             {
             case 1:
@@ -123,7 +127,11 @@ void workermanager::Add_Emp() {
                 worker = new Manager(id, name, 2);
                 break;
             case 3:
+<<<<<<< HEAD
                 worker = new boss(id, name, 3);
+=======
+                worker = new boss(id, name, 1);
+>>>>>>> 29f8e05eb2eb9275eec002dc8a96a7659c2b0efa
                 break;
             default:
                 break;
@@ -131,6 +139,7 @@ void workermanager::Add_Emp() {
 
             //将新创建的职工，添加到数组中
             newSpace[this->m_EmpNum + i] = worker;
+<<<<<<< HEAD
            
         }
 
@@ -144,6 +153,20 @@ void workermanager::Add_Emp() {
         this->save();
         //提示添加成功
         cout << "成功添加。" << endl;
+=======
+
+            delete[] this->m_EmpArray;
+            //更改新空间的指向
+            this->m_EmpArray = newSpace;
+            //更新新的职工人数
+            this->m_EmpNum += newsize;
+            //创建文件，保存到本地！
+
+
+            //提示添加成功
+            cout << "成功添加" << endl;
+        }
+>>>>>>> 29f8e05eb2eb9275eec002dc8a96a7659c2b0efa
 
     }
     else {

@@ -5,9 +5,12 @@ using namespace std;
 #include"manager.h"
 #include"boss.h"
 #include"employee.h"
+<<<<<<< HEAD
 
 #include<fstream>
 #define FILENAME "empFile.txt"
+=======
+>>>>>>> 29f8e05eb2eb9275eec002dc8a96a7659c2b0efa
 
 class workermanager
 {
