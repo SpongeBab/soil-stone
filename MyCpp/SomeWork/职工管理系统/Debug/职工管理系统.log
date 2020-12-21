@@ -1,4 +1,5 @@
-﻿  workermanager.cpp
-  职工管理系统.cpp
+﻿  boss.cpp
+  employee.cpp
+  manager.cpp
   正在生成代码...
   职工管理系统.vcxproj -> D:\MyGit\soil-stone\MyCpp\SomeWork\职工管理系统\Debug\职工管理系统.exe

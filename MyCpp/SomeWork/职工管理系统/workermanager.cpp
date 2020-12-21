@@ -150,9 +150,9 @@ int workermanager::IsExist(int id) {
     int index = -1;
 
     for (int i = 0; i < m_EmpNum; i++) {
-        if (this->m_EmpArray[i]->m_Id =id) {
-            cout << "找到" << endl;
-            index = 1;
+        if (this->m_EmpArray[i]->m_Id = id) {
+            cout << "找到。" << endl;
+            index = i;
             break;
         }
     }
@@ -205,14 +205,11 @@ void workermanager::Mod_Emp() {
             }
             //更新数据
             this->m_EmpArray[ret] = worker;
-
             cout << "修改成功。" << endl;
 
             //保存到文件中
             this->save();
-
         }
-
         else
         {
             cout << "修改失败。" << endl;
@@ -229,9 +226,56 @@ void workermanager::Find_Emp() {
     }
     else
     {
+        cout << "请输入查找方式：" << endl;
+        cout << "1.按职工编号查找。" << endl;
+        cout << "2.按职工姓名查找。" << endl;
 
+        int select;
+        cin >> select;
+
+        if (select == 1) {
+            // 按职工编号查找
+            int id;
+            cout << "请输入查找的职工编号:" << endl;
+
+            cin >> id;
+            int ret = IsExist(id);
+            if (ret != -1) {
+                cout << "成功。" << endl;
+                this->m_EmpArray[ret]->showInfo();
+            }
+            else
+            {
+                cout << "失败。" << endl;
+            }
+        }
+        else if (select==2){
+            // 按职工姓名查找
+            bool flag = false;
+
+            string name;
+            cout << "输入查找的姓名:" << endl;
+            cin >> name;
+             
+            for (int i = 0; i < m_EmpNum; i++) {
+                if (name == this->m_EmpArray[i]->m_name) {
+                    cout << "成功。" << endl;
+                    this->m_EmpArray[i]->showInfo();
+
+                    flag = true;
+                }
+            }
+            if (flag == false)
+            {
+                cout << "查找失败。" << endl;
+            }
+        }
+        else {
+            cout << "输入非法，重新输入。" << endl;
+        }
     }
-
+    system("pause");
+    system("cls");
 }
 
 
@@ -263,14 +307,16 @@ void workermanager::save() {
 }
 
 void workermanager::Show_menu() {
-    cout << "1.添加成员" << endl;
-    cout << "2.显示职工" << endl;
-    cout << "3.删除职工" << endl;
-    cout << "4.修改职工" << endl;
-    cout << "5.查找职工" << endl;
-    cout << "6.按照编号排序" << endl;
-    cout << "7.清空所有信息" << endl;
-    cout << "0.退出" << endl;
+    cout << "********************" << endl;
+    cout << "********0.退出********" << endl;
+    cout << "********1.添加成员********" << endl;
+    cout << "********2.显示职工********" << endl;
+    cout << "********3.删除职工********" << endl;
+    cout << "********4.修改职工********" << endl;
+    cout << "********5.查找职工********" << endl;
+    cout << "********6.按照编号排序********" << endl;
+    cout << "********7.清空所有信息********" << endl;
+    
 }
 
 void workermanager::ExitSystem() {
@@ -358,7 +404,7 @@ void workermanager::Add_Emp() {
         cout << "成功添加" << endl;
     }
     else {
-        cout << "输入人数非法，请重新输入" << endl;
+        cout << "输入人数非法，请重新输入。" << endl;
     }
     //返回上一级
     system("pause");
