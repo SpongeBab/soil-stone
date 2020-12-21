@@ -30,6 +30,9 @@ public:
 	//职工数组指针    一个数组，里面全是指针？
 	worker** m_EmpArray;
 
+	//判断文件是否为空
+	bool m_Fileempty;
+
 	//添加成员
 	void Add_Emp();
 
@@ -45,14 +48,19 @@ public:
 	//显示成员
 	void Show_Emp();
 
+	//删除职工
 	void Del_Emp();
 
+	//判断员工是否存在，存在返回所在位置，不存在返回-1
 	int IsExist(int id);
 
+	//修改职工
+	void Mod_Emp();
 
-	//判断文件是否为空
-	bool m_Fileempty;
+	void Find_Emp();
 
+
+	
 
 private:
 

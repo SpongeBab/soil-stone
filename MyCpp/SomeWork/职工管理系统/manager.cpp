@@ -9,11 +9,11 @@ Manager::Manager(int id, string name, int dId) {
 
 //显示个人信息
 void Manager::showInfo() {
-	cout << "经理编号：" << this->m_Id << endl;
-	cout << "经理姓名：" << this->m_name << endl;
-	cout << "经理所在部门ID：" << this->m_DeptID << endl;
-	cout << "经理岗位：" << this->getDeptName() << endl;
-	cout << "完成boss分配的任务,并分配给员工。" << endl;
+	cout << "经理编号：" << this->m_Id << ""
+	cout << "经理姓名：" << this->m_name << ""
+	cout << "经理所在部门ID：" << this->m_DeptID << ""
+	cout << "经理岗位：" << this->getDeptName() << ""
+	cout << "完成boss分配的任务,并分配给员工。" << "\n" << endl;
 }
 
 //获取岗位信息

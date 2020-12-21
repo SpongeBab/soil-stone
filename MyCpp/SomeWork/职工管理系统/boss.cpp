@@ -9,10 +9,10 @@ boss::boss(int id, string name, int dId) {
 
 //显示个人信息
 void boss::showInfo() {
-	cout << "经理编号：" << this->m_Id 
-		<<"经理姓名：" << this->m_name  
-		<< "经理所在部门ID：" << this->m_DeptID 
-		<< "经理岗位：" << this->getDeptName() 
+	cout << "经理编号：" << this->m_Id << ""
+		<<"经理姓名：" << this->m_name << ""
+		<< "经理所在部门ID：" << this->m_DeptID << ""
+		<< "经理岗位：" << this->getDeptName() << ""
 		<< "完成boss分配的任务,并分配给员工。" << "\n"<< endl;
 }
 
