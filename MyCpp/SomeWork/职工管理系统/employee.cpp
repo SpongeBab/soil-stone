@@ -10,11 +10,11 @@ Employee::Employee(int id, string name, int dID) {
 
 
 void Employee::showInfo() {
-	cout << "职工编号：" << this->m_Id << ""
-	cout << "职工姓名：" << this->m_name << ""
-	cout << "职工所在部门ID：" << this->m_DeptID << ""
-	cout << "职工岗位：" << this->getDeptName() << ""
-	cout << "完成经理分配的任务" << "\n" << endl;
+	cout << "职工编号：" << this->m_Id << " "
+	 << "职工姓名：" << this->m_name << " "
+	 << "职工所在部门ID：" << this->m_DeptID << " "
+	 << "职工岗位：" << this->getDeptName() << " "
+	 << "完成经理分配的任务" << "\n" << endl;
 }
 
 
