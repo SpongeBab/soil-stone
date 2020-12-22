@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 ﻿  workermanager.cpp
+=======
+﻿  boss.cpp
+  employee.cpp
+  manager.cpp
+  正在生成代码...
+>>>>>>> 80918b4be38e780274ef5512ec3a8d4430ec31c8
   职工管理系统.vcxproj -> D:\MyGit\soil-stone\MyCpp\SomeWork\职工管理系统\Debug\职工管理系统.exe
