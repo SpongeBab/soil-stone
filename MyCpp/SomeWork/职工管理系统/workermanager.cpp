@@ -3,14 +3,14 @@
 #include<string>
 
 workermanager::workermanager()
-{   
+{
     //文件不存在
     bool m_Fileempty = false;
     ifstream ifs;
     ifs.open(FILENAME, ios::in);
-    
 
-    if (!ifs.is_open()){
+
+    if (!ifs.is_open()) {
         //cout << "文件不存在。" << endl;
         this->m_EmpNum = 0;
         this->m_EmpArray = NULL;
@@ -86,14 +86,14 @@ void workermanager::init_Emp() {
         if (dID == 1) {
             worker = new Employee(id, name, dID);
         }
-        else if (dID == 2){
+        else if (dID == 2) {
             worker = new Manager(id, name, dID);
         }
         else if (dID == 3) {
             worker = new boss(id, name, dID);
         }
 
-        this->m_EmpArray[index] = worker; 
+        this->m_EmpArray[index] = worker;
         index++;
     }
     //关闭文件
@@ -127,7 +127,7 @@ void workermanager::Del_Emp() {
 
         if (index != -1) {
             //数据前移，覆盖
-            for (int i = index; i < m_EmpNum-1; i++) {
+            for (int i = index; i < m_EmpNum - 1; i++) {
                 this->m_EmpArray[i] = this->m_EmpArray[i + 1];
             }
             this->m_EmpNum--;
@@ -175,7 +175,7 @@ void workermanager::Mod_Emp() {
             delete this->m_EmpArray[ret];
 
             int newID = 0;
-            string newname ="";
+            string newname = "";
             int dSelect = 0;
 
             cout << "查到：" << id << "号职工，请输入新职工号：" << endl;
@@ -188,7 +188,7 @@ void workermanager::Mod_Emp() {
             cout << "1.职工" << endl;
             cout << "2.经理" << endl;
             cout << "3.老板" << endl;
-            
+
             cin >> dSelect;
             worker* worker = NULL;
             switch (dSelect)
@@ -249,14 +249,14 @@ void workermanager::Find_Emp() {
                 cout << "失败。" << endl;
             }
         }
-        else if (select==2){
+        else if (select == 2) {
             // 按职工姓名查找
             bool flag = false;
 
             string name;
             cout << "输入查找的姓名:" << endl;
             cin >> name;
-             
+
             for (int i = 0; i < m_EmpNum; i++) {
                 if (name == this->m_EmpArray[i]->m_name) {
                     cout << "成功。" << endl;
@@ -272,9 +272,9 @@ void workermanager::Find_Emp() {
         }
         else {
             cout << "输入非法，重新输入。" << endl;
-            
+
         }
-        
+
     }
 
     system("pause");
@@ -299,7 +299,7 @@ workermanager::~workermanager()
 
 void workermanager::save() {
     fstream ofs;
-    ofs.open(FILENAME, ios::out|ios::app);
+    ofs.open(FILENAME, ios::out | ios::app);
 
     for (int i = 0; i < this->m_EmpNum; i++) {
         ofs << this->m_EmpArray[i]->m_Id << " "   //如果输入的类型不对会崩溃
@@ -319,7 +319,7 @@ void workermanager::Show_menu() {
     cout << "********5.查找职工********" << endl;
     cout << "********6.按照编号排序********" << endl;
     cout << "********7.清空所有信息********" << endl;
-    
+
 }
 
 void workermanager::ExitSystem() {
@@ -340,8 +340,8 @@ void workermanager::Add_Emp() {
         //开辟新空间
         //worker * [newsize]是一个指针数组，存放不同种类worker的指针，
         //** newspace是二级指针指向这个指针数组的首地址
-        worker** newSpace = new worker * [newsize];  
-        
+        worker** newSpace = new worker * [newsize];
+
         //将原来空间下的数据，拷贝到新空间下
         if (this->m_EmpArray != NULL) {
             for (int i = 0; i < this->m_EmpNum; i++) {
@@ -354,18 +354,18 @@ void workermanager::Add_Emp() {
             int id;
             string name;
             int dSelect;
-            
-            cout << "请输入第" << i + 1<< "个人的ID：" << endl;
+
+            cout << "请输入第" << i + 1 << "个人的ID：" << endl;
             cin >> id;
             /*if（id=NULL) {
             cout << "输入非法，重新输入。" << endl;
                 }*/
-            cout << "请输入第" << i + 1<< "个人的姓名：" << endl;
+            cout << "请输入第" << i + 1 << "个人的姓名：" << endl;
             cin >> name;
             /*if（name = NULL) {
             cout << "输入非法，重新输入。" << endl;
                 }*/
-            cout << "请输入第" << i + 1<< "个人的部门：" << endl;
+            cout << "请输入第" << i + 1 << "个人的部门：" << endl;
             cout << "1.普通员工" << endl;
             cout << "2.经理" << endl;
             cout << "3.老板" << endl;
@@ -373,7 +373,7 @@ void workermanager::Add_Emp() {
             /*if（dSelect = NULL) {
             cout << "输入非法，重新输入。" << endl;
                 }*/
-            worker * worker = NULL;  
+            worker* worker = NULL;
             switch (dSelect)
             {
             case 1:
@@ -391,7 +391,7 @@ void workermanager::Add_Emp() {
 
             //将新创建的职工，添加到数组中
             newSpace[this->m_EmpNum + i] = worker;
-           
+
         }
 
         delete[] this->m_EmpArray;
