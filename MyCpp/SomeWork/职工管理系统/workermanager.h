@@ -63,6 +63,7 @@ public:
 	//еепР
 	void Sort_Emp();
 	
+	void Clean_File();
 
 private:
 

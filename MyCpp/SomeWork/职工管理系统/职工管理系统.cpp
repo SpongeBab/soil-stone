@@ -54,13 +54,13 @@ int main() {
             wm.Sort_Emp();
             break;
         case 7: //清空所有信息
+            wm.Clean_File();
             break;
         default:
             break;
         }
 
     }
-
     system("pause");
     return 0;
 }
