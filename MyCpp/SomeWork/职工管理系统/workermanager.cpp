@@ -4,11 +4,9 @@
 
 workermanager::workermanager()
 {
-    //文件不存在
-    bool m_Fileempty = false;
+    //1.文件不存在
     ifstream ifs;
     ifs.open(FILENAME, ios::in);
-
 
     if (!ifs.is_open()) {
         //cout << "文件不存在。" << endl;
@@ -19,7 +17,7 @@ workermanager::workermanager()
         return;
     }
 
-    //文件存在，数据为空
+    //2.文件存在，数据为空
     char ch;
     ifs >> ch;
     if (ifs.eof()) {
@@ -30,7 +28,8 @@ workermanager::workermanager()
         ifs.close();
         return;
     }
-    //文件存在，并且记录数据
+
+    //3.文件存在，并且记录数据
     int num = this->get_EmpNum();
     //cout << "职工人数为：" << num << endl;
     this->m_EmpNum = num;
@@ -127,19 +126,22 @@ void workermanager::Del_Emp() {
 
         if (index != -1) {
             //数据前移，覆盖
-            for (int i = index; i < m_EmpNum - 1; i++) {
+            for (int i = index; i < this->m_EmpNum - 1; i++) {
                 this->m_EmpArray[i] = this->m_EmpArray[i + 1];
             }
             this->m_EmpNum--;
 
             //数据同步更新到文件
             this->save();
-
             cout << "删除成功。" << endl;
         }
         else {
             cout << "删除失败。" << endl;
         }
+        /*if (this->m_EmpNum == 0)
+        {
+            this->m_Fileempty = false;
+        }*/
 
     }
     system("pause");
@@ -202,6 +204,8 @@ void workermanager::Mod_Emp() {
             case 3:
                 worker = new boss(newID, newname, dSelect);
                 break;
+            default :
+                break;
             }
             //更新数据
             this->m_EmpArray[ret] = worker;
@@ -237,8 +241,8 @@ void workermanager::Find_Emp() {
             // 按职工编号查找
             int id;
             cout << "请输入查找的职工编号:" << endl;
-
             cin >> id;
+
             int ret = IsExist(id);
             if (ret != -1) {
                 cout << "成功。" << endl;
@@ -281,7 +285,58 @@ void workermanager::Find_Emp() {
     system("cls");
 }
 
+//排序
+void workermanager::Sort_Emp() {
+    if (this->m_Fileempty) {
+        cout << "文件为空！" << endl;
+        system("pause");
+        system("cls");
+    }
+    else
+    {
+        cout << "请选择排序方式" << endl;
+        cout << "1.按照编号进行升序。" << endl;
+        cout << "2.按照编号进行降序。" << endl;
+    }
 
+    int select = 0;
+    cin >> select;
+    for (int i = 0; i < m_EmpNum; i++) {
+        int minOrMax = i; //声明最小值，最大值下标
+        for (int j = i+1; j < m_EmpNum; j++) {
+            if (select == 1)
+            { //升序
+                if (this->m_EmpArray[minOrMax]->m_Id > this->m_EmpArray[j]->m_Id)
+                {
+                    minOrMax = j;
+                }
+            }
+            else if(select==2) //降序
+            {
+                if (this->m_EmpArray[minOrMax]->m_Id < this->m_EmpArray[j]->m_Id)
+                {
+                    minOrMax = j;
+                }
+            }
+            else
+            {
+                cout << "输入有误，请重新输入。" << endl;
+            }
+        }
+        if (i != minOrMax)
+        {
+            worker * temp = this->m_EmpArray[i];
+            this->m_EmpArray[i] = this->m_EmpArray[minOrMax];
+            this->m_EmpArray[minOrMax] = temp;
+        }
+    }
+    cout << "排序成功。" << endl;
+    this->save();
+    this->Show_Emp();
+    /*fclose(((const char)FILENAME));*/
+    system("pause");
+    system("cls");
+}
 
 
 
@@ -291,6 +346,13 @@ void workermanager::Find_Emp() {
 workermanager::~workermanager()
 {
     if (this->m_EmpArray != NULL) {
+        for (int i = 0; i < this->m_EmpNum; i++)
+        {
+            if (this->m_EmpArray[i] != NULL)
+            {
+                delete this->m_EmpArray[i];
+            }
+        }
         delete[] this->m_EmpArray;
         this->m_EmpArray = NULL;
     }
@@ -299,7 +361,7 @@ workermanager::~workermanager()
 
 void workermanager::save() {
     fstream ofs;
-    ofs.open(FILENAME, ios::out | ios::app);
+    ofs.open(FILENAME, ios::out);
 
     for (int i = 0; i < this->m_EmpNum; i++) {
         ofs << this->m_EmpArray[i]->m_Id << " "   //如果输入的类型不对会崩溃
@@ -357,9 +419,10 @@ void workermanager::Add_Emp() {
 
             cout << "请输入第" << i + 1 << "个人的ID：" << endl;
             cin >> id;
-            /*if（id=NULL) {
+            /*if(isdigit(id)==0)
+            {
             cout << "输入非法，重新输入。" << endl;
-                }*/
+            }*/
             cout << "请输入第" << i + 1 << "个人的姓名：" << endl;
             cin >> name;
             /*if（name = NULL) {

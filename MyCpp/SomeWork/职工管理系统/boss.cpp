@@ -11,7 +11,6 @@ boss::boss(int id, string name, int dId) {
 void boss::showInfo() {
 	cout << "老板编号：" << this->m_Id << " "
 		<<"老板姓名：" << this->m_name << " "
-		<< "老板所在部门ID：" << this->m_DeptID << " "
 		<< "老板岗位：" << this->getDeptName() << " "
 		<< "老板管理所有员工。" << "\n"<< endl;
 }

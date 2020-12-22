@@ -14,9 +14,9 @@ public:
 	//获取岗位信息
 	virtual string getDeptName() = 0;
 
-	int m_Id = 0;
+	int m_Id;
 	string m_name;
-	int m_DeptID = 0; //职工所在部门名称编号
+	int m_DeptID; //职工所在部门名称编号
 
 private:
 
