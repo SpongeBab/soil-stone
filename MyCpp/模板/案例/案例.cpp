@@ -24,7 +24,7 @@ void sort(T arr[], int len) {
 		}
 		if (max != i)
 		{		
-			
+			//需要先声明才能使用
 			myswap(arr[max], arr[i]);
 		}
 	}
@@ -51,7 +51,7 @@ void printfArray(T arr[], int len)
 }
 
 
-void test01() {
+void test() {
 	//测试char数组
 	char charArray[] = "hfsha";
 	int num = sizeof(charArray) / sizeof(char);  //计算数组的长度
@@ -82,11 +82,31 @@ void test03()
 
 
 
-int main() {
 
-	test02();
 
-	system("pause");
-	return 0;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//int main() {
+//
+//	test02();
+//
+//	system("pause");
+//	return 0;
+//}
 
