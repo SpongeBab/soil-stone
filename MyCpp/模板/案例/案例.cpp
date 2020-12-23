@@ -65,7 +65,7 @@ void test02()
 	int numArray[] = { 4,2,5,7,8,1 };
 	int num = sizeof(numArray) / sizeof(int);
 	sort(numArray, num);
-	printfArray(numArray, num-1);
+	printfArray(numArray, num);
 }
 
 
