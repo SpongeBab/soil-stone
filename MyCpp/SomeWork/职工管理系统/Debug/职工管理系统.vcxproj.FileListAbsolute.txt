@@ -1,2 +1,0 @@
-D:\MyGit\soil-stone\MyCpp\SomeWork\职工管理系统\Debug\职工管理系统.exe
-D:\MyGit\soil-stone\MyCpp\SomeWork\职工管理系统\Debug\职工管理系统.pdb
