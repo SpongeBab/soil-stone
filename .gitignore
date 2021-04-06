@@ -10,3 +10,18 @@
 /MyCpp/STL/set容器/.vs/set容器/v16/Browse.VC.opendb
 /MyCpp/常用算法/for-each/.vs/for-each/v16/Browse.VC.opendb
 /MyCpp/常用算法/for-each/.vs/for-each/v15/Browse.VC.opendb
+
+
+# vs* generate
+.vscode
+/MyCpp/常用算法/for-each/x64/Debug
+/MyCpp/常用算法/for-each/.vs/for-each
+/MyCpp/STL/001/.vs/001/v16
+MyCpp/STL/001/Debug
+MyCpp/STL/案例/.vs/案例/v16
+MyCpp/STL/案例/Debug
+MyCpp/STL/list容器/.vs
+MyCpp/STL/list容器/Debug
+MyCpp/STL/set容器/.vs/set容器/v16
+MyCpp/STL/set容器/Debug
+MyCpp/STL/set容器/Release
