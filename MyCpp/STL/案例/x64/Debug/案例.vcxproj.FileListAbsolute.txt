@@ -1,2 +1,0 @@
-D:\MyGit\soil-stone\MyCpp\STL\案例\x64\Debug\案例.exe
-D:\MyGit\soil-stone\MyCpp\STL\案例\x64\Debug\案例.pdb
